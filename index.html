@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lyric Decoder</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.6/lib/index.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.6/lib/css/preflight.min.css"
-    rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css">
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>Lyric Decoder</h1>
+            <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Lyric Decoder</h1>
         </div>
         <div class="main">
             <div id="song-input">
                 <textarea name="song-title" cols="30" placeholder="Enter your song title here.."></textarea>
             </div>
             <div>
-                <button>Search</button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Search
+                  </button>
             </div>
             <div id="lyric-output">
                 <textarea name="song-lyrics" cols="30" rows="10" placeholder="Your lyrics will appear here..."></textarea>
@@ -31,7 +31,9 @@
                 <textarea name="lyric-word" cols="30" placeholder="Enter your lyric here.."></textarea>
             </div>
             <div>
-                <button>Search</button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Search
+                  </button>
             </div>
             <div id="definition-output">
                 <textarea name="lyric-definition" cols="30" rows="10" placeholder="Your definition will appear here..."></textarea>
