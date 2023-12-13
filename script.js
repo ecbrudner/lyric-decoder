@@ -10,25 +10,51 @@ var wordInput= document.getElementById("word-choice");
 //user enters song name and lyrics are displayed
 songSearchButton.addEventListener("click", getLyrics);
 
-function getLyrics(){
+async function getLyrics(){
     //use track.search to get track_id
     var songName= songNameInput.value;
-    var getTrackId="https://api.musixmatch.com/ws/1.1/track.search?q_track_artist=" + songName + "&apikey=2be841372ae6b4bf6b34181f81863d2c";
-    console.log(getTrackId);
+    const url1 = 'https://genius-song-lyrics1.p.rapidapi.com/search/?q='+ songName +'&per_page=10&page=1';
+    const options1 = {
+	    method: 'GET',
+	    headers: {
+		    'X-RapidAPI-Key': '6e80b305f6mshb4c48ce28d66fabp1ee768jsn39199b79955f',
+		    'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
+	    }
+    };
 
-    // fetch(getTrackId)
-    // .then(function(response){
-    //     return response.json();
-    // })
-    // .then(function(data){
-    //     console.log(data);
-        //need to define track_id in a variable
-        //use track.lyrics.get to get lyrics from track_id
-    // })
-    // .catch(function(error){
-    //     console.log(error);
-    // });
+    try {
+	    const response = await fetch(url1, options1);
+	    const result = await response.text();
+	    console.log(result);
+        var resultObj= JSON.parse(result);
+        console.log(resultObj);
+        var trackId= resultObj.hits[0].result.id;
+        console.log(trackId);
 
+        const url2 = 'https://genius-song-lyrics1.p.rapidapi.com/song/lyrics/?id='+ trackId+'&per_page=10&page=1';
+        const options2 = {
+	        method: 'GET',
+	        headers: {
+		        'X-RapidAPI-Key': '6e80b305f6mshb4c48ce28d66fabp1ee768jsn39199b79955f',
+		        'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
+	        }
+        };
+
+        try {
+	        const response = await fetch(url2, options2);
+	        const result = await response.text();
+	        console.log(result);
+            var resultObj2= JSON.parse(result);
+            console.log(resultObj2);
+            var lyrics= resultObj2.lyrics.lyrics.body.html;
+            console.log(lyrics);
+        } catch (error) {
+	        console.error(error);
+        }
+
+    } catch (error) {
+	    console.error(error);
+    }  
 }
 
 //user enters word from lyrics and definition is displayed 
