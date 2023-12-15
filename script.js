@@ -7,8 +7,19 @@ var wordSearchButton= document.getElementById("word-search");
 var songNameInput= document.getElementById("song-name");
 var wordInput= document.getElementById("word-choice");
 var albumArtEl= document.getElementById("album-art");
+var savedSongsEl= document.getElementById("saved-songs");
 
 //add functionality to save song searches to local storage in buttons
+//check if song already in local storage
+function songButtonExists(title){
+    var existingButtons= document.getElementsByClassName("saved-song-button");
+    for (var i=0; i<existingButtons.length; i++){
+        if (existingButtons[i].innerHTML===title){
+            return true;
+        }
+    } 
+    return false;
+}
 
 //user enters song name and lyrics are displayed
 songSearchButton.addEventListener("click", getLyrics);
@@ -35,8 +46,37 @@ async function getLyrics(){
         console.log(trackId);
         var albumArtUrl= resultObj.hits[0].result.header_image_thumbnail_url;
         console.log(albumArtUrl);
+        var title= resultObj.hits[0].result.title;
+        console.log(title);
+        var searchedSong= {
+            trackId: trackId,
+            albumArtUrl: albumArtUrl,
+            title: title
+        };
+
+        //save searched song to local storage
+        localStorage.setItem("searchedSong", JSON.stringify(searchedSong));
+
+        //check if button with same song name already exists
+        if (!songButtonExists(title)){
+        
+            //create button for searched song
+            var savedSongButton= document.createElement("button");
+            savedSongButton.innerHTML= title;
+            savedSongButton.setAttribute("class", "saved-song-button");
+
+            //append button to savedSongsEl
+            savedSongsEl.appendChild(savedSongButton);
+
+            //when button is clicked, run getWeather function
+            savedSongButton.addEventListener("click", function(){
+                songNameInput.value= title;
+                getLyrics();
+            });
+        }
 
         //display album art
+        albumArtEl.innerHTML="";
         var albumArt=document.createElement("img");
         albumArt.setAttribute("src", albumArtUrl);
         albumArtEl.appendChild(albumArt);
@@ -61,12 +101,11 @@ async function getLyrics(){
             console.log(resultObj2);
             var lyrics= resultObj2.lyrics.lyrics.body.html;
             console.log(lyrics);
-
+           
             //trim and display lyrics
             lyricOutputEl.innerHTML= lyrics;
-            var lyricsText= lyricOutputEl.textContent.trim();
-            console.log(lyricsText);
-            lyricOutputEl.innerHTML= lyricsText;
+            console.log(lyricOutputEl.innerHTML);
+            
            
         } catch (error) {
 	        console.error(error);
