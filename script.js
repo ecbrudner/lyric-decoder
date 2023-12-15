@@ -8,6 +8,7 @@ var songNameInput= document.getElementById("song-name");
 var wordInput= document.getElementById("word-choice");
 var albumArtEl= document.getElementById("album-art");
 var savedSongsEl= document.getElementById("saved-songs");
+var savedWordsEl= document.getElementById("saved-words");
 
 //add functionality to save song searches to local storage in buttons
 //check if song already in local storage
@@ -20,6 +21,17 @@ function songButtonExists(title){
     } 
     return false;
 }
+
+// //check if word already in local storage
+function wordButtonExists(word){
+     var existingWordButtons= document.getElementsByClassName("saved-word-button");
+     for (var i=0; i<existingWordButtons.length; i++){
+         if (existingWordButtons[i].innerHTML===word){
+             return true;
+         }
+     } 
+     return false;
+ }
 
 //user enters song name and lyrics are displayed
 songSearchButton.addEventListener("click", getLyrics);
@@ -122,7 +134,7 @@ async function getLyrics(){
 wordSearchButton.addEventListener("click", getDefinition);
 
 async function getDefinition () {
-    var word= wordInput.value;
+    var word= wordInput.value.toLowerCase();
     const url = 'https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=' + word;
     const options = {
 	    method: 'GET',
@@ -141,10 +153,13 @@ async function getDefinition () {
 
     //display definition: need to create for loop to loop through all definitions
     //create condition that thumbs up is greater than thumbs down
+
+        definitionOutputEl.innerHTML="";
         for (i=0; i<resultObj3.list.length; i++) {
             var wordDefinition= resultObj3.list[i].definition;
             var thumbsUp= resultObj3.list[i].thumbs_up;
             var thumbsDown= resultObj3.list[i].thumbs_down;
+            var word= resultObj3.list[i].word;
 
             if (thumbsUp > thumbsDown) {
                 console.log(wordDefinition);
@@ -153,6 +168,32 @@ async function getDefinition () {
                 wordDefinitionEl.setAttribute("class", "definition-block");
                 definitionOutputEl.appendChild(wordDefinitionEl);
             }
+        }
+
+        var searchedWord= {
+            wordDefinition: wordDefinition,
+            word: word
+        };
+
+        //save searched song to local storage
+        localStorage.setItem("searchedWord", JSON.stringify(searchedWord));
+
+        //check if button with same song name already exists
+        if (!wordButtonExists(word)){
+        
+            //create button for searched song
+            var savedWordButton= document.createElement("button");
+            savedWordButton.innerHTML= word;
+            savedWordButton.setAttribute("class", "saved-word-button");
+
+            //append button to savedSongsEl
+            savedWordsEl.appendChild(savedWordButton);
+
+            //when button is clicked, run getWeather function
+            savedWordButton.addEventListener("click", function(){
+                wordInput.value= word;
+                getDefinition();
+            });
         }
 
     } catch (error) {

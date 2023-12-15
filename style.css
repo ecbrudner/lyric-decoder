@@ -17,6 +17,11 @@ body {
     
 }
 
+/*class for saved word buttons is .saved-word-button */
+.saved-word-button {
+    
+}
+
 
 /*lyrics scroll box using https://www.html.am/html-codes/marquees/css-scrolling-text.cfm */
 #scroll-up {
