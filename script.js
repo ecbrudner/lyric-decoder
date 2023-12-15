@@ -8,6 +8,8 @@ var songNameInput= document.getElementById("song-name");
 var wordInput= document.getElementById("word-choice");
 var albumArtEl= document.getElementById("album-art");
 
+//add functionality to save song searches to local storage in buttons
+
 //user enters song name and lyrics are displayed
 songSearchButton.addEventListener("click", getLyrics);
 
@@ -75,6 +77,8 @@ async function getLyrics(){
     }  
 }
 
+//add functionality to save song searches to local storage in buttons
+
 //user enters word from lyrics and definition is displayed 
 wordSearchButton.addEventListener("click", getDefinition);
 
@@ -99,7 +103,7 @@ async function getDefinition () {
     //display definition: need to create for loop to loop through all definitions
     //create condition that thumbs up is greater than thumbs down
 
-    
+
     } catch (error) {
 	console.error(error);
     }
