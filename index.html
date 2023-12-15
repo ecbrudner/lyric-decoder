@@ -18,10 +18,16 @@
             <h1 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Lyric Decoder</h1>
         </div>
         <div class="main">
-            <div class="border-solid border-3 border-sky-500">
-            <div id="song-input">
-                <input id="song-name" type="text" class="rounded border-gray-300 focus:border-blue-500 focus:ring-blue-500 p-2" name="song-title" placeholder="Enter your song title here..">
+            <!-- search song input box -->
+            <label
+            for="song-name"
+            class="block mb-2 text-med font-medium text-gray-900 dark:text-white">Enter your song title here..</label>
+            <input 
+                type="text" 
+                id="song-name" 
+                class="rounded border-gray-200 border-blue-500 ring-blue-500 p-2">
             </div>
+            <!-- song search button -->
             <div>
                 <button id="song-search" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Search
@@ -31,10 +37,17 @@
                 <p id='lyric-output' cols="30" rows="10">Your lyrics will appear here...</p>
             </div>
             <div id="album-art"></div>
-            <div id="word-input">
-                    <input id="word-choice" name="lyric-word" cols="30" placeholder="Enter your lyric here..">
-                </div>
             <div>
+                <!-- lyric input box -->
+                <label
+                for="word-input"
+                class="block mb-2 text-med font-medium text-gray-900 dark:text-white">Enter your lyric here..</label>
+            <input 
+                type="text" 
+                id="word-input" 
+                class="rounded border-gray-200 border-blue-500 ring-blue-500 p-2">
+            </div>
+            <!-- word search button -->
                 <button id= "word-search" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Search
                 </button>
