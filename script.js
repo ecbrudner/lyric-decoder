@@ -102,7 +102,19 @@ async function getDefinition () {
 
     //display definition: need to create for loop to loop through all definitions
     //create condition that thumbs up is greater than thumbs down
+        for (i=0; i<resultObj3.list.length; i++) {
+            var wordDefinition= resultObj3.list[i].definition;
+            var thumbsUp= resultObj3.list[i].thumbs_up;
+            var thumbsDown= resultObj3.list[i].thumbs_down;
 
+            if (thumbsUp > thumbsDown) {
+                console.log(wordDefinition);
+                var wordDefinitionEl= document.createElement("div");
+                wordDefinitionEl.textContent= wordDefinition;
+                wordDefinitionEl.setAttribute("class", "definition-block");
+                definitionOutputEl.appendChild(wordDefinitionEl);
+            }
+        }
 
     } catch (error) {
 	console.error(error);
