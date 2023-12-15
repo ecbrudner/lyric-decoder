@@ -93,6 +93,13 @@ async function getDefinition () {
 	    const response = await fetch(url, options);
 	    const result = await response.text();
 	    console.log(result);
+        var resultObj3= JSON.parse(result);
+        console.log(resultObj3);
+
+    //display definition: need to create for loop to loop through all definitions
+    //create condition that thumbs up is greater than thumbs down
+
+    
     } catch (error) {
 	console.error(error);
     }
