@@ -6,12 +6,15 @@ var songSearchButton= document.getElementById("song-search");
 var wordSearchButton= document.getElementById("word-search");
 var songNameInput= document.getElementById("song-name");
 var wordInput= document.getElementById("word-choice");
+var albumArtEl= document.getElementById("album-art");
+
+//add functionality to save song searches to local storage in buttons
 
 //user enters song name and lyrics are displayed
 songSearchButton.addEventListener("click", getLyrics);
 
 async function getLyrics(){
-    //use track.search to get track_id
+    //use track.search to get track_id and album art url
     var songName= songNameInput.value;
     const url1 = 'https://genius-song-lyrics1.p.rapidapi.com/search/?q='+ songName +'&per_page=10&page=1';
     const options1 = {
@@ -30,6 +33,14 @@ async function getLyrics(){
         console.log(resultObj);
         var trackId= resultObj.hits[0].result.id;
         console.log(trackId);
+        var albumArtUrl= resultObj.hits[0].result.header_image_thumbnail_url;
+        console.log(albumArtUrl);
+
+        //display album art
+        var albumArt=document.createElement("img");
+        albumArt.setAttribute("src", albumArtUrl);
+        albumArtEl.appendChild(albumArt);
+
 
         //use trackid to get lyrics
 
@@ -55,30 +66,8 @@ async function getLyrics(){
             lyricOutputEl.innerHTML= lyrics;
             var lyricsText= lyricOutputEl.textContent.trim();
             console.log(lyricsText);
-
             lyricOutputEl.innerHTML= lyricsText;
-
-
-
-        } catch (error) {
-	        console.error(error);
-        }
-
-        //use track id to get album art
-        const url3 = 'https://genius-song-lyrics1.p.rapidapi.com/album/appearances/?id='+ trackId +'&per_page=20&page=1';
-        const options3 = {
-	        method: 'GET',
-	        headers: {
-		        'X-RapidAPI-Key': '6e80b305f6mshb4c48ce28d66fabp1ee768jsn39199b79955f',
-		        'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
-	        }
-        };
-
-        try {
-	        const response = await fetch(url3, options3);
-	        const result = await response.text();
-	        console.log(result);
-
+           
         } catch (error) {
 	        console.error(error);
         }
@@ -87,6 +76,8 @@ async function getLyrics(){
 	    console.error(error);
     }  
 }
+
+//add functionality to save song searches to local storage in buttons
 
 //user enters word from lyrics and definition is displayed 
 wordSearchButton.addEventListener("click", getDefinition);
@@ -106,6 +97,13 @@ async function getDefinition () {
 	    const response = await fetch(url, options);
 	    const result = await response.text();
 	    console.log(result);
+        var resultObj3= JSON.parse(result);
+        console.log(resultObj3);
+
+    //display definition: need to create for loop to loop through all definitions
+    //create condition that thumbs up is greater than thumbs down
+
+
     } catch (error) {
 	console.error(error);
     }
