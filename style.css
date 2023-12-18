@@ -7,26 +7,42 @@ body {
     text-align: center;
 }
 
+footer {
+    position: static;
+}
+
 /*class for definitions is .definition-block */
 .definition-block {
-
+    border-color: #113B55;
+    border-width: 2px;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: aliceblue;
 }
 
 /*class for saved song buttons is .saved-song-button */
 .saved-song-button {
-    
+    border-color: #113B55;
+    border-width: 2px;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: aliceblue;
 }
 
 /*class for saved word buttons is .saved-word-button */
 .saved-word-button {
-    
+    border-color: #113B55;
+    border-width: 2px;
+    border-radius: 8px;
+    padding: 5px;
+    background-color: aliceblue;
 }
 
 
 /*lyrics scroll box using https://www.html.am/html-codes/marquees/css-scrolling-text.cfm */
 #scroll-up {
- height: 250px;	
- overflow: hidden;
+ height: 250px;
+ overflow: scroll;
  position: relative;
  background: #113B55;
  color: rgb(249, 247, 244);
@@ -41,29 +57,29 @@ body {
  margin: 10px;
  line-height: 50px;
  text-align: center;
- /* Starting position */
+ /* Starting position
  -moz-transform:translateY(100%);
  -webkit-transform:translateY(100%);	
  transform:translateY(100%);
  /* Apply animation to this element and speed*/	
- -moz-animation: scroll-up 15s linear infinite;
+ /* -moz-animation: scroll-up 15s linear infinite;
  -webkit-animation: scroll-up 15s linear infinite;
- animation: scroll-up 15s linear infinite;
+ animation: scroll-up 15s linear infinite; */
 }
 /* Move it (define the animation) */
-@-moz-keyframes scroll-up {
+/* @-moz-keyframes scroll-up {
  0%   { -moz-transform: translateY(100%); }
  100% { -moz-transform: translateY(-100%); }
-}
-@-webkit-keyframes scroll-up {
+} */
+/* @-webkit-keyframes scroll-up {
  0%   { -webkit-transform: translateY(100%); }
  100% { -webkit-transform: translateY(-100%); }
-}
-@keyframes scroll-up {
+} */
+/* @keyframes scroll-up {
  0%   { 
  transform: translateY(100%); 		
  }
  100% { 
  transform: translateY(-100%); 
  }
-}
+} */
