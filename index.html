@@ -1,82 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lyric Decoder</title>
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lyric Decoder</title>
+        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.2/tailwind.min.css">
+    </head>
     <!-- body styling -->
     <body class="min-h-screen bg-gradient-to-b from-gray-100 to-gray-300">
-     <!-- mediascreens -->
-    <div class="w-full px-4 mx-auto max-w-8xl">
-    <div class="bg-gradient-to-r from-cyan-500 to-blue-500">
-    <div class="container">
-        <div class="header">
-            <h1 class="text-4xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight mx-1 py-2">Lyric Decoder</h1>
-        </div>
-        <div class="main">
-            <!-- search song input box -->
-            <label
-            for="song-name"
-            class="block mb-2 text-lg font-medium text-gray-900 mx-1 py-5 pb-0 :text-white">Enter your song title here..</label>
-            <input 
-                type="text" 
-                id="song-name" 
-                class="rounded border-gray-200 border-blue-500 ring-blue-500 mx-2 pt-2.0 p-2">
+        <!-- mediascreens -->
+        <div class="w-full px-4 mx-auto max-w-8xl">
+            <div class="bg-gradient-to-r from-cyan-500 to-blue-500">
+            <div class="header">
+                <h1 class="text-4xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight mx-1 py-2">Lyric Decoder</h1>
             </div>
-            <br/>
-            <!-- song search button -->
+            <div class="main">
+                <!-- search song input box -->
+                <label for="song-name" class="block mb-2 text-lg font-medium text-gray-900 mx-1 py-5 pb-0 :text-white">Enter your song title here..</label>
+                <input type="text" id="song-name" class="rounded border-gray-200 border-blue-500 ring-blue-500 mx-2 pt-2.0 p-2">
+            </div>
+                <br>
+                <!-- song search button -->
             <div>
-                <button id="song-search" class="bg-blue-500 hover:bg-blue-700 text-white mx-1 py-2 px-4 rounded">
-                    Search
-                  </button>
-            </div>
-            <br/>
-            <div id="saved-songs"></div>
-            <div id="scroll-up">
-                <p id='lyric-output' cols="30" rows="10">Your lyrics will appear here...</p>
-            </div>
-            <div id="album-art"></div>
-            <br/>
-            <div>
-                <!-- lyric input box -->
-                <label
-                for="word-input"
-                class="block mb-2 text-lg font-medium text-gray-900 dark:text-white mx-1 py-2 px-0 pb-0">Enter your lyric here..</label>
-            <input 
-                type="text" 
-                id="word-input" 
-                class="rounded border-gray-200 border-blue-500 ring-blue-500 mx-2 p-2">
-            </div>
-            <br/>
-            <!-- word search button -->
-                <button id= "word-search" class="bg-blue-500 hover:bg-blue-700 text-white font-bold mx-1 py-2 px-4 rounded">
-                    Search
+                <button id="song-search" class="bg-blue-500 hover:bg-blue-700 text-white mx-1 py-2 px-4 rounded"> Search
                 </button>
             </div>
-            <div id="saved-words"></div>
-            <label
-            for="definition-output"
-                class="box-content flow-root h-32 w-80 flex items-center mx-1 border-4 pt-2 p-1">
-                <p id="lyric-definition" cols="30" rows="10">
-                    Your definition(s) will appear here...</p>
+                <br>
+            <div id="saved-songs">
+                <p>Previously searched songs:</p>
+            </div>
+                <br>
+            <div id="scroll-up">
+                <p id="lyric-output" cols="30" rows="10">Your lyrics will appear here...</p>
+            </div>
+            <div id="album-art"></div>
+                <br>
+            <div>
+                 <!-- lyric input box -->
+                <label for="word-input" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white mx-1 py-2 px-0 pb-0">Enter your lyric here..</label>
+                <input type="text" id="word-input" class="rounded border-gray-200 border-blue-500 ring-blue-500 mx-2 p-2">
+            </div>
+                <br>
+                <!-- word search button -->
+                <button id="word-search" class="bg-blue-500 hover:bg-blue-700 text-white font-bold mx-1 py-2 px-4 rounded"> Search
+                </button>
+            </div>
+            <br>
+            <div id="saved-words">
+                <p>Previously searched words:</p>
+            </div>
+            <br>
+                <label for="definition-output" class="box-content flow-root min-h-32 flex items-center mx-1 border-4 pt-2 p-1">
+                <p id="lyric-definition">
+                    Your definition(s) will appear here...
+                </p>
             </div>
         </div>
         <!-- footer -->
-        <footer
-        class="bg-neutral-200 text-center dark:bg-neutral-700 lg:text-left">
-        <div class="p-4 text-center text-neutral-700 dark:text-neutral-200">
-        © 2023 Copyright:
-        <a
-        class="text-neutral-800 dark:text-neutral-400"
-        href="https://tw-elements.com/"
-        >Group 1 Avengers Assembled</a
-        >
-        </div>
+        <footer class="bg-neutral-200 text-center dark:bg-neutral-700 lg:text-left ">
+            <div class="p-4 text-center text-neutral-700 dark:text-neutral-200">
+                © 2023 Copyright:
+                <a class="text-neutral-800 dark:text-neutral-400" href="https://tw-elements.com/">Group 1 Avengers Assembled </a>
+            </div>
         </footer>
-        <script src="./script.js"></script>    
-</body>
+        <script src="./script.js"></script>
+    </body>
 </html>

@@ -1,11 +1,11 @@
 var songInputEl= document.getElementById("song-input");
 var lyricOutputEl= document.getElementById("lyric-output");
 var wordInputEl= document.getElementById("word-input");
-var definitionOutputEl= document.getElementById("definition-output");
+var definitionOutputEl= document.getElementById("lyric-definition");
 var songSearchButton= document.getElementById("song-search");
 var wordSearchButton= document.getElementById("word-search");
 var songNameInput= document.getElementById("song-name");
-var wordInput= document.getElementById("word-choice");
+// var wordInput= document.getElementById("word-choice");
 var albumArtEl= document.getElementById("album-art");
 var savedSongsEl= document.getElementById("saved-songs");
 var savedWordsEl= document.getElementById("saved-words");
@@ -134,7 +134,7 @@ async function getLyrics(){
 wordSearchButton.addEventListener("click", getDefinition);
 
 async function getDefinition () {
-    var word= wordInput.value.toLowerCase();
+    var word= wordInputEl.value.toLowerCase();
     const url = 'https://mashape-community-urban-dictionary.p.rapidapi.com/define?term=' + word;
     const options = {
 	    method: 'GET',
@@ -154,8 +154,8 @@ async function getDefinition () {
     //display definition: need to create for loop to loop through all definitions
     //create condition that thumbs up is greater than thumbs down
 
-        definitionOutputEl.innerHTML="";
-        for (i=0; i<resultObj3.list.length; i++) {
+        definitionOutputEl.textContent="";
+        for (i=0; i<10; i++) {
             var wordDefinition= resultObj3.list[i].definition;
             var thumbsUp= resultObj3.list[i].thumbs_up;
             var thumbsDown= resultObj3.list[i].thumbs_down;
