@@ -39,7 +39,7 @@ songSearchButton.addEventListener("click", getLyrics);
 async function getLyrics(){
     //use track.search to get track_id and album art url
     var songName= songNameInput.value;
-    const url1 = 'https://genius-song-lyrics1.p.rapidapi.com/search/?q='+ songName +'&per_page=10&page=1';
+    //const url1 = 'https://genius-song-lyrics1.p.rapidapi.com/search/?q='+ songName +'&per_page=10&page=1';
     const options1 = {
 	    method: 'GET',
 	    headers: {
@@ -96,7 +96,7 @@ async function getLyrics(){
 
         //use trackid to get lyrics
 
-        const url2 = 'https://genius-song-lyrics1.p.rapidapi.com/song/lyrics/?id='+ trackId+'&per_page=10&page=1';
+        //const url2 = 'https://genius-song-lyrics1.p.rapidapi.com/song/lyrics/?id='+ trackId+'&per_page=10&page=1';
         const options2 = {
 	        method: 'GET',
 	        headers: {
